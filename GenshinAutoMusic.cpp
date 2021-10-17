@@ -26,27 +26,69 @@ private:
     std::vector<std::vector<char>> m_tab;
     float BPM;
     std::string timeSig;
+
+    // Play from specific position to end;
+    void Play(int pos) {
+        
+        for (auto beat : m_tab) {
+            for (auto note : beat) {
+                if (note != '-' && note != '3') {
+                    press_key(note);
+                    release_key(note);
+                    std::cout << note;
+                }
+            }
+
+            std::cout << ' ';
+
+            if (beat.size() != 0 && beat[0] == '.') {
+                Sleep((unsigned long)(90 / BPM * 1000));
+            }
+            else if (beat.size() != 0 && beat[0] == '3') {
+                Sleep((unsigned long)(80 / BPM * 1000));
+            }
+            else if (beat.size() != 0 && beat[0] == '5') {
+                Sleep((unsigned long)(48 / BPM * 1000));
+            }
+            // 针对后有倚音
+            else if (beat.size() != 0 && beat[0] == '$') {
+                Sleep((unsigned long)(52 / BPM * 1000));
+            }
+            // 倚音
+            else if (beat.size() != 0 && beat[0] == '*') {
+                Sleep((unsigned long)(8 / BPM * 1000));
+            }
+            else {
+                Sleep((unsigned long)(60 / BPM * 1000));
+            }
+
+        }
+    }
+
 public:
     
     Tab(std::string GLBtimeSig,float GLBbpm) {
         timeSig = GLBtimeSig;
         BPM = GLBbpm;
     }
-    void Load() {
+    BOOL Load(char* filename) {
         m_tab.clear();
         std::ifstream fin;
-        fin.open("Tab.txt");
-        if (!fin){
-            std::cout << "Error...\n";
-            abort();
+        if (filename != nullptr) {
+            fin.open(filename);
+            if (!fin) {
+                std::cout << "Error...\n";
+                abort();
+            }
         }
+        else return false;
         std::string oriTab = {};
         std::string temp;
         while (!fin.eof()){
             getline(fin, temp);
             oriTab+=temp;
         }
-        for (int i = 0; i < oriTab.size(); i++)
+        for (unsigned int i = 0; i < oriTab.size(); i++)
         {
             if (oriTab[i] == '-' || oriTab[i] == ' ') {
                 m_tab.push_back({});
@@ -69,6 +111,7 @@ public:
                 
         }
         std::cout << "Loading Completed"<<std::endl;
+        return true;
     }
 
     void Output(std::string name) {
@@ -132,6 +175,8 @@ public:
                 fout << '|';
             }*/
     }
+    
+    // Play from begin to end.
     void Play() {
         for (auto beat : m_tab) {
             for (auto note : beat) {
@@ -167,23 +212,17 @@ public:
 
         }
     }
+
+    
 };
 
-
-
-int main()
-{
+int main(int argc, char* argv[]) {
 
     Tab tab("44",140);
-    tab.Load();
-    
-    
-   
+    if (!tab.Load(argv[1])) return 0;
+
     Sleep(6000);
     tab.Play();
 
-    
-
-    return 0;
-    
+    return 0;  
 }
