@@ -1,5 +1,5 @@
 # GenshinAutoMusic
-As shown as title.
+Auotomatically play tabs in text file.
 
 Run as Administrator(Automatically, just choose Yes).
 用管理员权限运行（运行时询问）
