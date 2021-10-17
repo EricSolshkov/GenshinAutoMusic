@@ -36,16 +36,19 @@ public:
         m_tab.clear();
         std::ifstream fin;
         fin.open("Tab.txt");
-        if (!fin)
-        {
+        if (!fin){
             std::cout << "Error...\n";
             abort();
         }
-        std::string oriTab;
-        std::getline(fin, oriTab);
+        std::string oriTab = {};
+        std::string temp;
+        while (!fin.eof()){
+            getline(fin, temp);
+            oriTab+=temp;
+        }
         for (int i = 0; i < oriTab.size(); i++)
         {
-            if (oriTab[i] == '-') {
+            if (oriTab[i] == '-' || oriTab[i] == ' ') {
                 m_tab.push_back({});
             }
             else if (oriTab[i] == '(') {
@@ -132,7 +135,7 @@ public:
     void Play() {
         for (auto beat : m_tab) {
             for (auto note : beat) {
-                if (note != '-'||note!='3') {
+                if (note != '-' && note != '3') {
                     press_key(note);
                     release_key(note);
                     std::cout << note;
@@ -171,28 +174,16 @@ public:
 int main()
 {
 
-    Tab CastleInTheSky("44",140);
-    CastleInTheSky.Load();
-    //CastleInTheSky.Output("CastleInTheSky");
+    Tab tab("44",140);
+    tab.Load();
+    
     
    
     Sleep(6000);
-    CastleInTheSky.Play();
+    tab.Play();
 
     
 
     return 0;
     
 }
-
-
-// 运aqgz行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
-// 调试程序: F5 或调试 >“开始调试”菜单
-
-// 入门使用技巧: 
-//   1. 使用解决方案资源管理器窗口添加/管理文件
-//   2. 使用团队资源管理器窗口连接到源代码管理
-//   3. 使用输出窗口查看生成输出和其他消息
-//   4. 使用错误列表窗口查看错误
-//   5. 转到“项目”>“添加新项”以创建新的代码文件，或转到“项目”>“添加现有项”以将现有代码文件添加到项目
-//   6. 将来，若要再次打开此项目，请转到“文件”>“打开”>“项目”并选择 .sln 文件
