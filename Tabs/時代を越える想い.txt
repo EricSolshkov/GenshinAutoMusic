@@ -1,31 +1,32 @@
---DG|(VNAH)-HQ|(BMSW)-ET|
-(NADE)-WQ|(BADH)-EW|
-(VNAH)-EW|(BMSH)-G-|
-(NAD)CNM|A-
+#TimeSig=44 BPM=76 DefaultNote=8
+#--DG|~(VNAH)-HQ|~(BMSW)-ET|
+#~(NADE)-WQ|~(BADH)-EW|
+#~(VNAH)-EW|~(BMSH)-G-|
+#~(NAD)CNM|A-DG|
 
-DG|(VH)N(AH)Q|(BW)M(SE)T|
-(NE)A(DW)Q|(BH)A(DE)W|
-(VH)N(AE)W|(BH)M(SG)-|(NH)CNM|A-
+(*VH)N(*AH)Q|(*BW)M(*SE)T|
+(*NE)A(*DW)Q|(*BH)A(*DE)W|
+(*VH)N(*AE)W|(*BH)M(*SG)-|
+(*NH)CNM|A-(*ND)~(BDG)|
 
-(ND)(BDG)|(VDH)NAG|
-(BH)M(SJ)G|(NH)A(DG)S|
-(ND)A(ND)(BDG)|(VDH)NAG|
-(BH)(MQ)(SJ)G|(NAD)CNM|A-
+~(VDH)NAG|(*BH)M(*SJ)G|
+(*NH)A(*DG)S|(*ND)A(*ND)~(BDG)|
+~(VDH)NAG|(*BH)(*MQ)(*SJ)G|
+~(NAD)CNM|A-(NE)(BET)|
 
-(NE)(BET)|(VEY)N(AD)T|
-(BY)M(SDU)T|(NY)A(DT)W|
-(BE)A(DE)W|(VH)N(ADE)W|
-(BH)M(SDG)-|(NH)CNM|A-
+~(VEY)N(*AD)T|(*BY)M~(SDU)T|
+(*NY)A(*DT)W|(*BE)A(*DE)W|
+(*VH)N~(ADE)W|(*BH)M~(SDG)-|
+(*NH)CNM|A-(*ND)~(BDG)|
 
-(ND)(BDG)|(VDH)NAG|
-(BH)M(SJ)G|(NH)A(DG)S|
-(ND)A(ND)(BDG)|(VDH)NAG|
-(BH)(MQ)(SJ)G|(NAD)CNM|A-
+~(VDH)NAG|(*BH)M(*SJ)G|
+(*NH)A(*DG)S|(*ND)A(*ND)~(BDG)|
+~(VDH)NAG|(*BH)(*MQ)(*SJ)G|
+~(NAD)CNM|A-(*NE)~(BET)|
 
-(NE)(BET)|(VEY)N(AD)T|
-(BY)M(SDU)T|(NY)A(DT)W|
-(BE)A(DE)W|(VH)N(ADE)W|
-(BH)M(SDG)-|(NH)CNM|A-
-
-EW(VNAH)-|EW(BMSH)-|
-G--(NADH)
+~(VEY)N(*AD)T|(*BY)M~(SDU)T|
+(*NY)A(*DT)W|(*BE)A(*DE)W|
+(*VH)N~(ADE)W|(*BH)M~(SDG)-|
+(~NH)CNM|A-EW|
+~(VNAH)->E>W|>~(BMSH)>->G>->|
+~0(NADH)
