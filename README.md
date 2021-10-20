@@ -1,13 +1,13 @@
 # GenshinAutoMusic
 Auotomatically play tabs in text file.
 
+Drag tab file over the icon and load it. Double clicking the APP won't work.
+
+拖动曲谱文件至图标上以加载。直接双击程序打开无效。
+
 Run as Administrator(Automatically, just choose Yes).
 
 用管理员权限运行（运行时询问）
-
-Drag tab file over the icon and load it.
-
-拖动曲谱至图标上以加载。
 
 music starts in 6s after loading.
 
