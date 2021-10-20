@@ -1,4 +1,4 @@
-#TimeSig=44 BPM=76 DefaultNote=8
+#TimeSig=44 BPM=76 DefaultNote=8 Author=指尖灬旋律丿
 #--DG|~(VNAH)-HQ|~(BMSW)-ET|
 #~(NADE)-WQ|~(BADH)-EW|
 #~(VNAH)-EW|~(BMSH)-G-|

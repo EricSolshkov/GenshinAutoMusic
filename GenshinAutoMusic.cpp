@@ -294,17 +294,17 @@ public:
 			// 若有提前音，为其分配对应的时值
 			//printf("%f ", beat.duration * currentScale);
 			PreciseSleep(beat.duration * currentScale);
-			PreciseSleepInit();
+			//PreciseSleepInit();
 			if (beat.deco.size() != 0) {
 				for (char note : beat.deco) {
 					press_key(note);
 					release_key(note);
 					//printf("%f ", currentScale * beat.timeForDeco / ((float)beat.deco.size()));
 					PreciseSleep(currentScale * beat.timeForDeco / ((float)beat.deco.size()));
-					PreciseSleepInit();
+					//PreciseSleepInit();
 				}
 			}
-			PreciseSleepInit();
+			//PreciseSleepInit();
 		}
 	}
 };
@@ -315,6 +315,7 @@ int main(int argc, char* argv[]) {
 
 	if (!tab.Load(argv[1])) return 0;
 	tab.PreProcess();
+	PreciseSleepInit();
 	PreciseSleep(6000);
 	tab.Play();
 

@@ -1,4 +1,4 @@
-#TimeSig=44  BPM=70 DefaultNote=8
+#TimeSig=44  BPM=70 DefaultNote=8 Author=指尖灬旋律丿
 ~4(VASJQT)4-4-4-
 ~4(CMASGJW)4-4-4-
 ~p>(VASGJQE)p>Qp>Jp>H>J>Q4>-4>-

@@ -90,6 +90,16 @@ List of control symbols:
  
  \. : 休止符/连音符 (可与时值控制符联用，可与-联用)
 
+# Authorization 授权信息
+
+“大鱼.txt”, “時代を越える想い.txt”Authorized by @指尖灬旋律丿
+
+“大鱼.txt”, “時代を越える想い.txt”由 @指尖灬旋律丿 授权使用
+
+# Thanks致谢
+
+Bilibili UP[@指尖灬旋律丿](https://space.bilibili.com/76052941)
+
 
 
 
