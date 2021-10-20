@@ -52,6 +52,10 @@ List of control symbols:
 
 \. : dot(can be combined with duration control symbols and '-' symbol)
 
+\> : ritardando (can be combined with any duration control symbols. apply it to successive notes to get slower speed.)
+
+\< : accelerando (can be combined with any duration control symbols. apply it to successive notes to get slower speed.)
+
 
 
 控制符列表：
@@ -89,6 +93,10 @@ List of control symbols:
 \- : 休止符/连音符 (可与时值控制符联用)
  
  \. : 休止符/连音符 (可与时值控制符联用，可与-联用)
+ 
+ \> : 渐慢 (可与任意时值控制符联用，应用于连续多个音符以获得持续减慢的速度)
+
+\< : 渐快 (可与任意时值控制符联用，应用于连续多个音符以获得持续加快的速度)
 
 # Authorization 授权信息
 
