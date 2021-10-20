@@ -17,7 +17,7 @@ when AutoMusic works, keep Genshin client on the top
 
 程序运行时，保持原神客户端位于窗口顶层
 
-List of control symbols:
+# List of control symbols:
  
  \# : comment whole line
  
@@ -58,7 +58,7 @@ List of control symbols:
 
 
 
-控制符列表：
+# 控制符列表：
 
 \# : 注释整行
  
@@ -104,7 +104,7 @@ List of control symbols:
 
 “大鱼.txt”, “時代を越える想い.txt”由 @指尖灬旋律丿 授权使用
 
-# Thanks致谢
+# Thanks 致谢
 
 Bilibili UP[@指尖灬旋律丿](https://space.bilibili.com/76052941)
 
