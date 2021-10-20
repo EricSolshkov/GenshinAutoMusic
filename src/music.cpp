@@ -242,7 +242,7 @@ void Tab::Play() {
 			switch (symbol) {
 			case rit: {
 				isRit = true;
-				currentScale = currentScale * std::pow(1.2, beat.duration / defaultBeatTime);
+				currentScale *= std::pow(1.2, beat.duration / defaultBeatTime);
 				currentScale = currentScale > 1.5 ? 1.5 : currentScale;
 				break;
 			}
@@ -259,14 +259,13 @@ void Tab::Play() {
 		}
 		if (!isRit && !isAccel) currentScale = 1.0;
 
-		// 若有提前音，为其分配对应的时值
 		timer.PreciseSleep(beat.duration * currentScale);
-		if (beat.deco.size() != 0) {
-			for (char note : beat.deco) {
-				press_key(note);
-				release_key(note);
-				timer.PreciseSleep(currentScale * beat.timeForDeco / ((float)beat.deco.size()));
-			}
+		
+		// 若有提前音，为其分配对应的时值
+		for (char note : beat.deco) {
+			press_key(note);
+			release_key(note);
+			timer.PreciseSleep(currentScale * beat.timeForDeco / ((float)beat.deco.size()));
 		}
 
 	}
