@@ -33,6 +33,7 @@ bool Tab::Load(char* filename) {
 		fin.open(filename);
 		if (!fin) {
 			std::cout << "Error in Loading.\n";
+			
 			abort();
 		}
 	}
@@ -40,8 +41,16 @@ bool Tab::Load(char* filename) {
 
 	std::string oriTab = {};
 	std::string temp;
+	bool isCommented=false;
 	while (!fin.eof()) {
 		getline(fin, temp);
+
+		if (temp.substr(0, 2) == "##") {
+			isCommented = !isCommented;
+		}
+		if (isCommented) {
+			continue;
+		}
 		if (temp[0] == '#') {
 			
 			std::string tempTimeSig = utils::GetAttribute(temp, "TimeSig");
@@ -146,7 +155,7 @@ void Tab::PreProcess() {
 	//(*(m_tab.end() - 1)).jmp.push_back(fin);
 	(*(m_tab.end() - 1)).unfin = false;
 
-	// 含有提前音的处理
+	// 处理所有拍的提前音
 	for (auto beat = m_tab.begin(); beat < m_tab.end(); ++beat) {
 		for (auto symbol : (*beat).ctrl) {
 			switch (symbol) {
@@ -189,7 +198,27 @@ void Tab::PreProcess() {
 			}
 			}
 		}
+		
 	}
+	for (auto beat = m_tab.begin(); beat < m_tab.end(); ++beat) {
+		// 生成正拍输入事件
+		for (auto note : (*beat).note) {
+			INPUT i;
+			ZeroMemory(&i, sizeof(INPUT));
+			i.ki.wVk = note;
+			i.type = INPUT_KEYBOARD;
+			(*beat).note_input.push_back(i);
+		}
+		// 生成提前音输入事件
+		for (auto deco : (*beat).note) {
+			INPUT i;
+			ZeroMemory(&i, sizeof(INPUT));
+			i.ki.wVk = deco;
+			i.type = INPUT_KEYBOARD;
+			(*beat).deco_input.push_back(i);
+		}
+	}
+	
 
 	// 调整各拍时值
 	for (auto beat = m_tab.begin(); beat < m_tab.end(); ++beat) {
@@ -228,12 +257,9 @@ void Tab::PreProcess() {
 void Tab::Play() {
 	timer.Init();
 	for (auto beat = *(m_tab.begin()); beat.unfin; beat = *(beat.next)) {
-		for (char note : beat.note) {
-			if (symbols::isKey(note)) {
-				press_key(note);
-				release_key(note);
-				//printf("%c", note);
-			}
+		//for (auto note = beat.note_input.begin(); note != beat.note_input.end();++note) { // Unknown bug don't understand.
+		for (auto note = beat.note.begin(); note != beat.note.end();++note) {
+			press_key(*note);
 		}
 
 		/// 渐进速度调整
@@ -252,22 +278,23 @@ void Tab::Play() {
 				break;
 			}
 			default: {
-				//isRit = false, isAccel = false;
 				break;
 			}
 			}
 		}
 		if (!isRit && !isAccel) currentScale = 1.0;
+		
 
+		
 		timer.PreciseSleep(beat.duration * currentScale);
 		
+		
 		// 若有提前音，为其分配对应的时值
-		for (char note : beat.deco) {
-			press_key(note);
-			release_key(note);
+		//for (auto note = beat.deco_input.begin(); note != beat.deco_input.end(); ++note) { // Unknown bug don't understand.
+		for (auto note = beat.deco.begin(); note != beat.deco.end(); ++note) {
+			press_key(*note);
 			timer.PreciseSleep(currentScale * beat.timeForDeco / ((float)beat.deco.size()));
 		}
-
 	}
 }
 
@@ -278,19 +305,8 @@ void Tab::Output(std::string name) {
 		name = "Untitled";
 	}
 	fout.open(name + ".txt");
-	float time = 0;
-	for (auto beat : m_tab) {
-		for (auto symbol : beat.ctrl)
-			fout << symbol;
-		if (beat.note.size() == 0)
-			fout << '-';
-		else
-		{
-			fout << '(';
-			for (auto note : beat.note) {
-				fout << note;
-			}
-			fout << ')';
-		}
-	}
+	
+	// output sth...
+
+	fout.close();
 }

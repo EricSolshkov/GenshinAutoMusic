@@ -15,9 +15,10 @@ int main(int argc, char* argv[]) {
 	if (!theTab.Load(argv[1])) return 0;
 	theTab.PreProcess();
 	Timer timer0;
+
 	timer0.Init();
 	timer0.PreciseSleep(6000);
 	theTab.Play();
-
+	
 	return 0;
 }

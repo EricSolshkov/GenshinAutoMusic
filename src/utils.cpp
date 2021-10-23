@@ -9,11 +9,15 @@ utils::Timer::~Timer() {}
 
 void utils::Timer::Init() {
 	tp = std::chrono::steady_clock::now();
+	initTime = tp;
 }
-void utils::Timer::PreciseSleep(float sec) {
-	long interv = long(sec * 1000);
+void utils::Timer::PreciseSleep(float milisec) {
+	long interv = long(milisec * 1000);
 	tp += std::chrono::microseconds(interv);
 	std::this_thread::sleep_until(tp);
+}
+std::chrono::steady_clock::time_point utils::Timer::PreciseTime() {
+	return std::chrono::steady_clock::now();
 }
 
 std::string utils::GetAttribute(std::string source, std::string attribute) {
@@ -28,15 +32,26 @@ std::string utils::GetAttribute(std::string source, std::string attribute) {
 	return {};
 }
 
-BYTE utils::scan_code(DWORD pKey) {
-	const DWORD result = MapVirtualKey(pKey, MAPVK_VK_TO_VSC);
-	return static_cast<BYTE>(result);
+
+
+
+void utils::press_key(INPUT key) {
+	INPUT container;
+	ZeroMemory(&container, sizeof(container));
+	container = key;
+	SendInput(1, &container, sizeof(INPUT));
+	container.ki.dwFlags = KEYEVENTF_KEYUP;
+	SendInput(1, &container, sizeof(INPUT));
 }
 
-void utils::press_key(DWORD pKey) {
-	keybd_event(static_cast<BYTE>(pKey), utils::scan_code(pKey), 0, 0);
+void utils::press_key(char key) {
+	INPUT ikey;
+	ZeroMemory(&ikey,sizeof(ikey));
+	ikey.type = INPUT_KEYBOARD;
+	ikey.ki.wVk = key;
+	SendInput(1, &ikey, sizeof(INPUT));
+	ikey.ki.dwFlags = KEYEVENTF_KEYUP;
+	SendInput(1, &ikey, sizeof(INPUT));
 }
 
-void utils::release_key(DWORD pKey) {
-	keybd_event(static_cast<BYTE>(pKey), utils::scan_code(pKey), KEYEVENTF_KEYUP, 0);
-}
+	
