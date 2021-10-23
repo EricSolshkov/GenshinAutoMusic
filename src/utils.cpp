@@ -36,12 +36,18 @@ std::string utils::GetAttribute(std::string source, std::string attribute) {
 
 
 void utils::press_key(INPUT key) {
+<<<<<<< HEAD
 	INPUT container;
 	ZeroMemory(&container, sizeof(container));
 	container = key;
 	SendInput(1, &container, sizeof(INPUT));
 	container.ki.dwFlags = KEYEVENTF_KEYUP;
 	SendInput(1, &container, sizeof(INPUT));
+=======
+	SendInput(1, &key, sizeof(INPUT));
+	key.ki.dwFlags = KEYEVENTF_KEYUP;
+	SendInput(1, &key, sizeof(INPUT));
+>>>>>>> 67e3dd8ba9a9b84c886a74024e610b08393e0ac9
 }
 
 void utils::press_key(char key) {
