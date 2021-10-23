@@ -16,6 +16,8 @@ namespace music {
 		std::vector<symbols::CtrlSymbol> ctrl;
 		std::vector<symbols::Key> note;
 		std::vector<symbols::Key> deco;
+		std::vector<INPUT> note_input;
+		std::vector<INPUT> deco_input;
 		std::vector<symbols::JmpSymbol> jmp;
 
 		float timeForDeco, duration;
@@ -30,9 +32,10 @@ namespace music {
 	private:
 		std::vector<Beat> m_tab;
 		float BPM, defaultBeatTime, currentScale = 1.0;
-		std::string timeSig;
 		symbols::CtrlSymbol defaultNote;
+		std::string timeSig;
 		std::map<symbols::CtrlSymbol, float > time;
+		std::vector<float> timeline = {};
 	public:
 		Timer timer;
 		Tab();
