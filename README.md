@@ -1,7 +1,7 @@
 # GenshinAutoMusic
 Auotomatically play tabs in text file.
 
-## 下载可执行文件请点击右侧release
+## 下载可执行文件请点击右侧releases
 
 Drag tab file over the icon and load it. Double clicking the APP won't work.
 
